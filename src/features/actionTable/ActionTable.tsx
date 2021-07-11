@@ -1,5 +1,5 @@
 import React, {Fragment} from "react";
-import {Pokemon} from "../pokemonsList/pokemonsListSlice";
+import {InnerPokemon} from "../pokemonsList/pokemonsListSlice";
 import {capitalizeFirstLetter, obtainPokemonIdFromUrl} from "../utils";
 import actionTableStyles from './ActionTable.module.css';
 import {useAppDispatch} from "../../app/hooks";
@@ -7,11 +7,12 @@ import {loadPokemonDetailsAsync} from "../landing/landingSlice";
 
 type Props = {
     columns: string[],
-    data: Pokemon[]
+    data: InnerPokemon[]
 };
 
 const ActionTable: React.FC<Props> = ({columns, data}: Props) => {
     const dispatch = useAppDispatch();
+
     const handleLoadPokemonDetails = (pokemonId:string) => {
           dispatch(loadPokemonDetailsAsync(pokemonId));
     };

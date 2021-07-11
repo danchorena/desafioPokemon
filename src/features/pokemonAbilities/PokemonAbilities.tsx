@@ -1,15 +1,23 @@
 import React, {Fragment} from 'react';
 import {useAppSelector} from "../../app/hooks";
-import {selectPokemonDetails} from "../landing/landingSlice";
+import {selectPokemonDetails, selectPokemonDetailsStatus} from "../landing/landingSlice";
 import Title from "../Title/Title";
+import {capitalizeFirstLetter} from "../utils";
 
 const PokemonAbilities = () =>{
-    const {pokemonSelected,moves} = useAppSelector(selectPokemonDetails);
+    const {pokemonSelected,name,moves} = useAppSelector(selectPokemonDetails);
+    const pokemonName = name !== '' ? capitalizeFirstLetter(name) : '';
+    const status = useAppSelector(selectPokemonDetailsStatus);
+    if (status === 'loading') {
+        return (
+            <h2>Cargando...</h2>
+        )
+    }
     return (
         <div>
-            <Title>Abilidades de este pokemon</Title>
             {pokemonSelected?
                 <Fragment>
+                    <Title>Abilidades de {pokemonName}</Title>
                     {moves.map((move,index)=>{
                         return(
                             <h4 key={index}><strong>#{index +1}: </strong>{move.move.name}</h4>

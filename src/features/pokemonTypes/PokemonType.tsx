@@ -1,18 +1,30 @@
 import React, {Fragment} from 'react';
 import {useAppSelector} from "../../app/hooks";
-import {selectPokemonDetails} from "../landing/landingSlice";
+import {selectPokemonDetails, selectPokemonDetailsStatus} from "../landing/landingSlice";
 import Title from "../Title/Title";
+import {capitalizeFirstLetter} from '../utils';
 
-const PokemonTypes = () =>{
-    const {pokemonSelected,types} = useAppSelector(selectPokemonDetails);
+const PokemonTypes = () => {
+    const {pokemonSelected, name, types} = useAppSelector(selectPokemonDetails);
+    const pokemonName = name !== '' ? capitalizeFirstLetter(name) : '';
+    const status = useAppSelector(selectPokemonDetailsStatus);
+    if (status === 'loading') {
+        return (
+            <h2>Cargando...</h2>
+        )
+    }
     return (
         <div>
-            <Title>Tipos de este pokemon</Title>
-            {pokemonSelected?
+            {pokemonSelected ?
                 <Fragment>
-                    {types.map((type,index)=>{
-                        return(
-                            <h4 key={index}><strong>Tipo #{index +1}: </strong>{type.type.name}</h4>
+                    {types.length > 1 ?
+                        <Title>{pokemonName} es de los tipos</Title>
+                        :
+                        <Title>{pokemonName} es del tipo</Title>
+                    }
+                    {types.map((type, index) => {
+                        return (
+                            <h4 key={index}><strong>Tipo #{index + 1}: </strong>{type.type.name}</h4>
                         )
                     })}
                 </Fragment>

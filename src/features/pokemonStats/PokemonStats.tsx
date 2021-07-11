@@ -1,15 +1,23 @@
 import React, { Fragment } from 'react';
 import {useAppSelector} from "../../app/hooks";
-import { selectPokemonDetails } from '../landing/landingSlice';
+import {selectPokemonDetails, selectPokemonDetailsStatus} from '../landing/landingSlice';
 import Title from '../Title/Title';
+import {capitalizeFirstLetter} from "../utils";
 
 const PokemonStats = () =>{
-    const {pokemonSelected,expBase,height,weight,stats} = useAppSelector(selectPokemonDetails);
+    const {pokemonSelected,expBase,height,weight,name,stats} = useAppSelector(selectPokemonDetails);
+    const pokemonName = name !== '' ? capitalizeFirstLetter(name) : '';
+    const status = useAppSelector(selectPokemonDetailsStatus);
+    if (status === 'loading') {
+        return (
+            <h2>Cargando...</h2>
+        )
+    }
     return (
         <div>
-            <Title>Estadísticas</Title>
             {pokemonSelected?
                 <Fragment>
+                    <Title>Estadísticas de {pokemonName}</Title>
                     <h4><strong>Experiencia Base:</strong> {expBase} puntos</h4>
                     <h4><strong>Estatura:</strong> {(parseFloat(height) / 10).toFixed(2)} m</h4>
                     <h4><strong>Peso:</strong> {(parseFloat(weight)/10).toFixed(2)} kg</h4>

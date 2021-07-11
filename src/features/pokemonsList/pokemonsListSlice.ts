@@ -2,25 +2,36 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {RootState} from '../../app/store';
 import {requestPokemonsList} from './pokemonsListAPI';
 
-export interface Pokemon {
+export interface InnerPokemon {
     name:string,
     url:string
 }
+export interface Pokemon {
+    count:number,
+    previous:string,
+    next:string
+    results:InnerPokemon[]
+}
 
 export interface PokemonsListState {
-    value: Pokemon[],
+    value: Pokemon,
     status: 'idle' | 'loading' | 'failed';
 }
 
 const initialState: PokemonsListState = {
-    value: [],
+    value: {
+        count:0,
+        previous:'',
+        next:'',
+        results:[]
+    },
     status: 'idle'
 };
 
 export const loadPokemonsListAsync = createAsyncThunk(
     'pokemonsList/requestPokemonsList',
-    async () => {
-        return await requestPokemonsList()
+    async (urlParams:string) => {
+        return await requestPokemonsList(urlParams)
     }
 );
 
@@ -30,9 +41,14 @@ export const pokemonsListSlice = createSlice({
     reducers: {},
     extraReducers:(builder)=>{
         builder
-            .addCase(loadPokemonsListAsync.pending,(state) =>{
+            .addCase(loadPokemonsListAsync.pending,(state,action) =>{
                 state.status = 'loading';
-                state.value = []
+                state.value = {
+                    count:0,
+                    previous:'',
+                    next:'',
+                    results:[]
+                }
             })
             .addCase(loadPokemonsListAsync.fulfilled,(state,action)=>{
                 state.status = 'idle';

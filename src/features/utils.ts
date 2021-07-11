@@ -4,8 +4,14 @@ export const obtainPokemonIdFromUrl = (url:string) => {
     const pokemonId = url.split('/');
     return pokemonId[6];
 };
+
 export const capitalizeFirstLetter = (characters:string) => {
     return characters[0].toUpperCase() + characters.slice(1);
+};
+
+export const obtainNextAndPreviousApiUrlParameters = (url:string) => {
+    const params = url.split('?');
+    return '?' + params[1]
 };
 
 export function getRequestInfo(url:string) {

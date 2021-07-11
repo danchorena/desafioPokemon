@@ -33,6 +33,7 @@ export interface PokemonDetails {
     expBase: string,
     height: string,
     weight: string,
+    name:string,
     moves: Move[],
     stats: Stat[],
     types: Type[],
@@ -49,6 +50,7 @@ const initialState: PokemonDetailsState = {
         expBase: "",
         height: "",
         weight: "",
+        name:"",
         moves: [],
         stats: [],
         types: []
@@ -76,6 +78,7 @@ export const pokemonDetailsSlice = createSlice({
                     expBase: "",
                     height: "",
                     weight: "",
+                    name:"",
                     moves: [],
                     stats: [],
                     types: []
@@ -88,6 +91,7 @@ export const pokemonDetailsSlice = createSlice({
                     expBase: action.payload.base_experience,
                     height: action.payload.height,
                     weight: action.payload.weight,
+                    name: action.payload.name,
                     moves: action.payload.moves,
                     stats: action.payload.stats,
                     types: action.payload.types
@@ -97,5 +101,6 @@ export const pokemonDetailsSlice = createSlice({
 });
 
 export const selectPokemonDetails = (state:RootState)=> state.pokemonDetails.value;
+export const selectPokemonDetailsStatus = (state:RootState)=> state.pokemonDetails.status;
 
 export default pokemonDetailsSlice.reducer;

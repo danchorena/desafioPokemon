@@ -82,4 +82,10 @@ footer {
         grid-template-rows: 0.4fr 0.4fr 2.2fr 1.2fr 1.2fr 1.2fr 1fr;
         grid-template-areas: "nav" "sidebar" "main" "stats" "types" "abilities" "footer";
     }
+    .stats,.types,.abilities {
+        height: 45vh;
+    }
+    tbody tr td {
+        text-align: center;
+    }
 }
