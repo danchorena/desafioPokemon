@@ -1,0 +1,1 @@
+export const POKEMONS_LIST_URL = 'pokemon';
