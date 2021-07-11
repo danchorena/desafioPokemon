@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect} from 'react';
+import React, {Fragment} from 'react';
 import {useAppSelector} from "../../app/hooks";
 import {selectPokemonDetails} from "../landing/landingSlice";
 import Title from "../Title/Title";

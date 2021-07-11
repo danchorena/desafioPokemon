@@ -42,8 +42,6 @@ export const pokemonsListSlice = createSlice({
     }
 });
 
-export const {} = pokemonsListSlice.actions;
-
 export const selectPokemons = (state: RootState) => state.pokemonsList.value;
 
 export default pokemonsListSlice.reducer;

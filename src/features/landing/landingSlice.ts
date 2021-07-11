@@ -1,6 +1,5 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {RootState} from '../../app/store';
-import {pokemonsListSlice} from "../pokemonsList/pokemonsListSlice";
 import {requestSinglePokemon} from "./landingAPI";
 
 export interface InnerStat {
@@ -97,7 +96,6 @@ export const pokemonDetailsSlice = createSlice({
     }
 });
 
-export const {} = pokemonsListSlice.actions;
 export const selectPokemonDetails = (state:RootState)=> state.pokemonDetails.value;
 
 export default pokemonDetailsSlice.reducer;
