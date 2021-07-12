@@ -24,6 +24,7 @@ const PokemonAbilities = () => {
             {pokemonSelected ?
                 <Fragment>
                     <Title>Habilidades de {pokemonName}</Title>
+                    <label htmlFor="abilitySearch">Buscar habilidad: </label>
                     <input type="text" name="abilitySearch" id="abilitySearch"
                            onChange={ (e: React.FormEvent<HTMLInputElement>) => handleSearchAbility(e.currentTarget.value)}
                     />
