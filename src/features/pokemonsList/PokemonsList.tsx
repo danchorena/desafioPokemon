@@ -23,7 +23,7 @@ const PokemonsList = () => {
 
     useEffect(() => {
         dispatch(loadPokemonsListAsync(''));
-    }, );
+    }, []);
 
     const handleChangePokemonsListPage = (urlParams: string) => {
         dispatch(loadPokemonsListAsync(urlParams));

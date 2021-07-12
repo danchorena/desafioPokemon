@@ -42,7 +42,7 @@ export const pokemonsListSlice = createSlice({
     reducers: {},
     extraReducers:(builder)=>{
         builder
-            .addCase(loadPokemonsListAsync.pending,(state) =>{
+            .addCase(loadPokemonsListAsync.pending,(state,action) =>{
                 state.status = 'loading';
                 state.value = {
                     count:0,

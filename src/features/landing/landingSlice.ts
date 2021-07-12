@@ -73,7 +73,7 @@ export const pokemonDetailsSlice = createSlice({
     reducers:{},
     extraReducers:(builder)=>{
         builder
-            .addCase(loadPokemonDetailsAsync.pending,(state)=>{
+            .addCase(loadPokemonDetailsAsync.pending,(state,action)=>{
                 state.status = 'loading';
                 state.value = {
                     pokemonSelected:false,

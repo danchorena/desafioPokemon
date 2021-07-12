@@ -37,7 +37,7 @@ export const pokemonCharacteristicsSlice = createSlice(
         reducers:{},
         extraReducers:(builder)=>{
             builder
-                .addCase(loadPokemonCharacteristicsAsync.pending,(state)=>{
+                .addCase(loadPokemonCharacteristicsAsync.pending,(state,action)=>{
                     state.status = 'loading';
                     state.value = {
                             baseHappiness:"",

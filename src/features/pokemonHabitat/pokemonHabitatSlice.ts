@@ -36,7 +36,7 @@ export const pokemonHabitatSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(loadPokemonHabitatAsync.pending, (state) => {
+            .addCase(loadPokemonHabitatAsync.pending, (state,action) => {
                 state.status = 'loading';
                 state.value = {
                     habitatName:"",
