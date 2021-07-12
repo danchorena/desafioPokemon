@@ -6,6 +6,7 @@ export interface InnerPokemon {
     name:string,
     url:string
 }
+
 export interface Pokemon {
     count:number,
     previous:string,
@@ -41,7 +42,7 @@ export const pokemonsListSlice = createSlice({
     reducers: {},
     extraReducers:(builder)=>{
         builder
-            .addCase(loadPokemonsListAsync.pending,(state,action) =>{
+            .addCase(loadPokemonsListAsync.pending,(state) =>{
                 state.status = 'loading';
                 state.value = {
                     count:0,

@@ -4,6 +4,8 @@ import {capitalizeFirstLetter, obtainPokemonIdFromUrl} from "../utils";
 import actionTableStyles from './ActionTable.module.css';
 import {useAppDispatch} from "../../app/hooks";
 import {loadPokemonDetailsAsync} from "../landing/landingSlice";
+import {loadPokemonHabitatAsync} from "../pokemonHabitat/pokemonHabitatSlice";
+import {loadPokemonCharacteristicsAsync} from "../pokemonCharacteristics/pokemonCharacteristicsSlice";
 
 type Props = {
     columns: string[],
@@ -15,6 +17,8 @@ const ActionTable: React.FC<Props> = ({columns, data}: Props) => {
 
     const handleLoadPokemonDetails = (pokemonId:string) => {
           dispatch(loadPokemonDetailsAsync(pokemonId));
+          dispatch(loadPokemonHabitatAsync(pokemonId));
+          dispatch(loadPokemonCharacteristicsAsync(pokemonId));
     };
 
     return (
@@ -45,7 +49,7 @@ const ActionTable: React.FC<Props> = ({columns, data}: Props) => {
                     <Fragment>
                         {data.map((data, index) => {
                             const pokemonId = obtainPokemonIdFromUrl(data.url);
-                            const pokemonName = capitalizeFirstLetter(data.name)
+                            const pokemonName = capitalizeFirstLetter(data.name);
                             return (
                                 <tr key={index}>
                                     <td>

@@ -2,12 +2,15 @@ import {Action, configureStore, ThunkAction} from '@reduxjs/toolkit';
 import counterReducer from '../features/counter/counterSlice';
 import pokemonsListReducer from '../features/pokemonsList/pokemonsListSlice';
 import pokemonDetailsReducer from '../features/landing/landingSlice';
-
+import pokemonHabitatReducer from '../features/pokemonHabitat/pokemonHabitatSlice';
+import pokemonCharacteristicsReducer from "../features/pokemonCharacteristics/pokemonCharacteristicsSlice";
 export const store = configureStore({
     reducer: {
         counter: counterReducer,
         pokemonsList: pokemonsListReducer,
-        pokemonDetails:pokemonDetailsReducer
+        pokemonDetails:pokemonDetailsReducer,
+        pokemonHabitat:pokemonHabitatReducer,
+        pokemonCharacteristics:pokemonCharacteristicsReducer
     },
 });
 

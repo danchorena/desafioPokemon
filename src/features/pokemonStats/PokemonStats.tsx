@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import {useAppSelector} from "../../app/hooks";
 import {selectPokemonDetails, selectPokemonDetailsStatus} from '../landing/landingSlice';
 import Title from '../Title/Title';
-import {capitalizeFirstLetter} from "../utils";
+import {capitalizeFirstLetter, replaceHyphenWithSpace} from "../utils";
 
 const PokemonStats = () =>{
     const {pokemonSelected,expBase,height,weight,name,stats} = useAppSelector(selectPokemonDetails);
@@ -23,7 +23,7 @@ const PokemonStats = () =>{
                     <h4><strong>Peso:</strong> {(parseFloat(weight)/10).toFixed(2)} kg</h4>
                     {stats.map((stat,index)=>{
                         return (
-                            <h4 key={index}><strong>{stat.stat.name}: </strong>{stat.base_stat}</h4>
+                            <h4 key={index}><strong>{replaceHyphenWithSpace(stat.stat.name)}: </strong>{stat.base_stat}</h4>
                         )
                     })}
                 </Fragment>

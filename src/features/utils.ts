@@ -9,6 +9,10 @@ export const capitalizeFirstLetter = (characters:string) => {
     return characters[0].toUpperCase() + characters.slice(1);
 };
 
+export const replaceHyphenWithSpace = (characters:string) => {
+    return characters.split('-').join(' ');
+};
+
 export const obtainNextAndPreviousApiUrlParameters = (url:string) => {
     const params = url.split('?');
     return '?' + params[1]

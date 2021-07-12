@@ -11,6 +11,7 @@ const PokemonsList = () => {
     const {count, next, previous, results} = useAppSelector(selectPokemons);
     let nextParams: string = '';
     let previousParams: string = '';
+
     if (next !== '' && next !== null) {
         nextParams = obtainNextAndPreviousApiUrlParameters(next);
     }
@@ -19,9 +20,10 @@ const PokemonsList = () => {
     }
     const dispatch = useAppDispatch();
     const columns = ["Id", "Nombre"];
+
     useEffect(() => {
         dispatch(loadPokemonsListAsync(''));
-    }, []);
+    }, );
 
     const handleChangePokemonsListPage = (urlParams: string) => {
         dispatch(loadPokemonsListAsync(urlParams));
@@ -34,15 +36,17 @@ const PokemonsList = () => {
                     <button type="button"
                             className={commonStyles.genericButton}
                             onClick={() => handleChangePokemonsListPage(previousParams)}
-                            disabled={previousParams === ''}
-                    ><span>&#8592; Antes</span></button>
-                    Pokemons List (Hay {count} pokemon{count > 0 ? 'es' : ''})
+                            disabled={previousParams === ''}>
+                        <span>&#8592; Previos</span>
+                    </button>
+                    Lista de pokemon{count > 0 ? 'es' : ''} - Hay {count} por ahora...
                     <button
                         type="button"
                         className={commonStyles.genericButton}
                         onClick={() => handleChangePokemonsListPage(nextParams)}
-                        disabled={nextParams === ''}
-                    ><span>Después &#8594;</span></button>
+                        disabled={nextParams === ''}>
+                        <span>Siguientes &#8594;</span>
+                    </button>
                 </div>
             </Title>
             <ActionTable columns={columns} data={results}/>

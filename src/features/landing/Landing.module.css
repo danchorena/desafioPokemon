@@ -10,9 +10,9 @@
     grid-template-rows: 0.2fr 1.5fr 1.2fr 0.8fr;
     grid-template-areas:
             "nav nav nav nav"
-            "sidebar main main main"
-            "sidebar stats types abilities"
-            "sidebar footer footer footer";
+            "abilities main main main"
+            "abilities stats types specie"
+            "abilities footer footer footer";
     grid-gap: 0.2rem;
     font-weight: 800;
     text-transform: uppercase;
@@ -22,10 +22,11 @@
 }
 
 nav {
-    background: #a7ffeb;
+    background: #b9ffd8;
     grid-area: nav;
     border-radius: var(--main-radius);
     padding-top: var(--main-padding);
+    height:4em
 }
 
 main {
@@ -35,54 +36,61 @@ main {
     padding-top: var(--main-padding);
 }
 
-.sidebar {
-    background: #18ffff;
-    grid-area: sidebar;
+.abilities {
+    background: #f7ffc2;
+    grid-area: abilities;
     border-radius: var(--main-radius);
     padding-top: var(--main-padding);
+    height: calc(100vh - 5em - 0.2rem);
+    overflow-y: auto;
 }
 
 .stats {
-    background: #6fffd2;
+    background: #a5bcff;
     grid-area: stats;
     border-radius: var(--main-radius);
     padding-top: var(--main-padding);
     max-height: 31vh;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .types {
-    background: #64ffda;
+    background: #ff9662;
     grid-area: types;
     border-radius: var(--main-radius);
     padding-top: var(--main-padding);
     max-height: 31vh;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
-.abilities {
-    background: #73ffba;
-    grid-area: abilities;
+.specie {
+    background: #5ebdff;
+    grid-area: specie;
     border-radius: var(--main-radius);
     padding-top: var(--main-padding);
     max-height: 31vh;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 footer {
-    background: #1de9b6;
+    background: #e9b3aa;
     grid-area: footer;
     border-radius: var(--main-radius);
     padding-top: var(--main-padding);
+    height: 20vh;
+    overflow-y: auto;
 }
 
 @media only screen and (max-width: 550px) {
     .container {
         grid-template-columns: 1fr;
         grid-template-rows: 0.4fr 0.4fr 2.2fr 1.2fr 1.2fr 1.2fr 1fr;
-        grid-template-areas: "nav" "sidebar" "main" "stats" "types" "abilities" "footer";
+        grid-template-areas: "nav" "abilities" "main" "stats" "types" "specie" "footer";
     }
-    .stats,.types,.abilities {
+    .abilities {
+        height:35vh
+    }
+    .stats,.types,.specie {
         height: 45vh;
     }
     tbody tr td {

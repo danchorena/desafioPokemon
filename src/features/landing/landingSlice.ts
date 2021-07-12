@@ -34,6 +34,7 @@ export interface PokemonDetails {
     height: string,
     weight: string,
     name:string,
+    encountersId:string,
     moves: Move[],
     stats: Stat[],
     types: Type[],
@@ -51,6 +52,7 @@ const initialState: PokemonDetailsState = {
         height: "",
         weight: "",
         name:"",
+        encountersId:"",
         moves: [],
         stats: [],
         types: []
@@ -71,7 +73,7 @@ export const pokemonDetailsSlice = createSlice({
     reducers:{},
     extraReducers:(builder)=>{
         builder
-            .addCase(loadPokemonDetailsAsync.pending,(state,action)=>{
+            .addCase(loadPokemonDetailsAsync.pending,(state)=>{
                 state.status = 'loading';
                 state.value = {
                     pokemonSelected:false,
@@ -79,6 +81,7 @@ export const pokemonDetailsSlice = createSlice({
                     height: "",
                     weight: "",
                     name:"",
+                    encountersId:"",
                     moves: [],
                     stats: [],
                     types: []
@@ -92,6 +95,7 @@ export const pokemonDetailsSlice = createSlice({
                     height: action.payload.height,
                     weight: action.payload.weight,
                     name: action.payload.name,
+                    encountersId:action.payload.location_area_encounters,
                     moves: action.payload.moves,
                     stats: action.payload.stats,
                     types: action.payload.types
