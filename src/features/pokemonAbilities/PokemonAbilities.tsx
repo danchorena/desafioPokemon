@@ -1,13 +1,19 @@
 import React, {Fragment} from 'react';
-import {useAppSelector} from "../../app/hooks";
-import {selectPokemonDetails, selectPokemonDetailsStatus} from "../landing/landingSlice";
+import {useAppDispatch, useAppSelector} from "../../app/hooks";
+import {searchAbility,selectPokemonDetails, selectPokemonDetailsStatus} from "../landing/landingSlice";
 import Title from "../Title/Title";
 import {capitalizeFirstLetter, replaceHyphenWithSpace} from "../utils";
 
 const PokemonAbilities = () => {
+    const dispatch = useAppDispatch();
     const {pokemonSelected, name, moves} = useAppSelector(selectPokemonDetails);
     const pokemonName = name !== '' ? capitalizeFirstLetter(name) : '';
     const status = useAppSelector(selectPokemonDetailsStatus);
+    const handleSearchAbility = (searchTerm:string) =>{
+        const newMoves = moves.filter((move)=>move.move.name.includes(searchTerm));
+        dispatch(searchAbility(newMoves));
+    };
+
     if (status === 'loading') {
         return (
             <h2>Cargando...</h2>
@@ -18,6 +24,9 @@ const PokemonAbilities = () => {
             {pokemonSelected ?
                 <Fragment>
                     <Title>Habilidades de {pokemonName}</Title>
+                    <input type="text" name="abilitySearch" id="abilitySearch"
+                           onChange={ (e: React.FormEvent<HTMLInputElement>) => handleSearchAbility(e.currentTarget.value)}
+                    />
                     {moves.map((move, index) => {
                         return (
                             <h4 key={index}>

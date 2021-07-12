@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {RootState} from '../../app/store';
 import {requestSinglePokemon} from "./landingAPI";
 
@@ -70,7 +70,11 @@ export const loadPokemonDetailsAsync = createAsyncThunk(
 export const pokemonDetailsSlice = createSlice({
     name:'pokemonDetails',
     initialState,
-    reducers:{},
+    reducers:{
+        searchAbility:(state,action:PayloadAction<Move[]>)=>{
+            state.value.moves = action.payload
+        }
+    },
     extraReducers:(builder)=>{
         builder
             .addCase(loadPokemonDetailsAsync.pending,(state,action)=>{
@@ -103,6 +107,8 @@ export const pokemonDetailsSlice = createSlice({
             })
     }
 });
+
+export const {searchAbility} = pokemonDetailsSlice.actions;
 
 export const selectPokemonDetails = (state:RootState)=> state.pokemonDetails.value;
 export const selectPokemonDetailsStatus = (state:RootState)=> state.pokemonDetails.status;
