@@ -70,11 +70,7 @@ export const loadPokemonDetailsAsync = createAsyncThunk(
 export const pokemonDetailsSlice = createSlice({
     name:'pokemonDetails',
     initialState,
-    reducers:{
-        searchAbility:(state,action:PayloadAction<Move[]>)=>{
-            state.value.moves = action.payload
-        }
-    },
+    reducers:{},
     extraReducers:(builder)=>{
         builder
             .addCase(loadPokemonDetailsAsync.pending,(state,action)=>{
@@ -107,8 +103,6 @@ export const pokemonDetailsSlice = createSlice({
             })
     }
 });
-
-export const {searchAbility} = pokemonDetailsSlice.actions;
 
 export const selectPokemonDetails = (state:RootState)=> state.pokemonDetails.value;
 export const selectPokemonDetailsStatus = (state:RootState)=> state.pokemonDetails.status;
